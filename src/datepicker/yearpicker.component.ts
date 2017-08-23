@@ -11,7 +11,6 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
     <tr>
       <th>
         <button type="button" class="btn btn-default btn-sm pull-left float-left"
-        <button type="button" class="btn btn-default btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)" [attr.tabindex]="tabIndex">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>

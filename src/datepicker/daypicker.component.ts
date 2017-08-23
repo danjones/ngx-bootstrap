@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 
@@ -13,14 +13,14 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)"
-                tabindex="-1">
+                [attr.tabindex]="tabIndex">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
         <button *ngIf="isBs4"
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)"
-                tabindex="-1">&lt;
+                [attr.tabindex]="tabIndex">&lt;
         </button>
       </th>
       <th [attr.colspan]="5 + (datePicker.showWeeks ? 1 : 0)">
@@ -28,7 +28,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 type="button" class="btn btn-default btn-secondary btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === datePicker.maxMode"
-                [ngClass]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" tabindex="-1" style="width:100%;">
+                [ngClass]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" [attr.tabindex]="tabIndex" style="width:100%;">
           <strong>{{title}}</strong>
         </button>
       </th>
@@ -37,14 +37,14 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-right float-right"
                 (click)="datePicker.move(1)"
-                tabindex="-1">
+                [attr.tabindex]="tabIndex">
           <i  class="glyphicon glyphicon-chevron-right"></i>
         </button>
         <button *ngIf="isBs4"
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-right float-right"
                 (click)="datePicker.move(1)"
-                tabindex="-1">&gt;
+                [attr.tabindex]="tabIndex">&gt;
         </button>
       </th>
     </tr>
@@ -66,7 +66,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-secondary': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz), 'btn-default': !isBs4}"
                   [disabled]="dtz.disabled"
-                  (click)="datePicker.select(dtz.date)" tabindex="-1">
+                  (click)="datePicker.select(dtz.date)" [attr.tabindex]="tabIndex">
             <span [ngClass]="{'text-muted': dtz.secondary || dtz.current, 'text-info': !isBs4 && dtz.current}">{{dtz.label}}</span>
           </button>
         </td>
@@ -87,7 +87,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   `]
 })
 export class DayPickerComponent implements OnInit {
-
+  @Input() public keyboardAccessible: boolean = false;
   public labels: any[] = [];
   public title: string;
   public rows: any[] = [];
@@ -100,6 +100,10 @@ export class DayPickerComponent implements OnInit {
 
   public get isBs4(): boolean {
     return !isBs3();
+  }
+    
+  public get tabIndex(): number {
+    return this.keyboardAccessible ? 0 : -1;
   }
 
   /*protected getDaysInMonth(year:number, month:number) {

@@ -38,9 +38,9 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [yearColLimit]="yearColLimit"
                       (selectionDone)="onSelectionDone($event)"
                       (activeDateChange)="onActiveDateChange($event)">
-      <daypicker tabindex="0"></daypicker>
-      <monthpicker tabindex="0"></monthpicker>
-      <yearpicker tabindex="0"></yearpicker>
+      <daypicker tabindex="0" [keyboardAccessible]="keyboardAccessible"></daypicker>
+      <monthpicker tabindex="0" [keyboardAccessible]="keyboardAccessible"></monthpicker>
+      <yearpicker tabindex="0" [keyboardAccessible]="keyboardAccessible"></yearpicker>
     </datepicker-inner>
     `,
   providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
@@ -89,6 +89,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public customClass: { date: Date, mode: string, clazz: string }[];
   /** array of disabled dates */
   @Input() public dateDisabled: { date: Date, mode: string }[];
+  /** if true keyboard accessibility is enabled **/
+  @Input() public keyboardAccessible: boolean = false;
 
   /** currently active date */
   @Input()

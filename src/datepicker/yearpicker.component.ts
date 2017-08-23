@@ -20,7 +20,8 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === datePicker.maxMode"
-                [ngClass]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" [attr.tabindex]="tabIndex" style="width:100%;">
+                [ngClass]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" 
+                [attr.tabindex]="tabIndex" style="width:100%;" [focus]="keyboardAccessible">
           <strong>{{title}}</strong>
         </button>
       </th>
@@ -90,6 +91,8 @@ export class YearPickerComponent implements OnInit {
       self.title = [years[0].label,
         years[this.yearRange - 1].label].join(' - ');
       self.rows = this.split(years, self.datePicker.yearColLimit);
+      
+      
     }, 'year');
 
     this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {

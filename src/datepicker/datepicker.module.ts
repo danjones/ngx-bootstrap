@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FocusModule } from 'angular2-focus';
 
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { DatePickerComponent } from './datepicker.component';
@@ -11,7 +10,7 @@ import { YearPickerComponent } from './yearpicker.component';
 import { DatepickerConfig } from './datepicker.config';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, FocusModule.forRoot()],
+    imports: [CommonModule, FormsModule],
   declarations: [DatePickerComponent, DatePickerInnerComponent, DayPickerComponent,
                  MonthPickerComponent, YearPickerComponent],
   exports: [DatePickerComponent, DatePickerInnerComponent, DayPickerComponent,

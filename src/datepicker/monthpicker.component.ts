@@ -20,7 +20,8 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
                 [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" 
-                [attr.tabindex]="tabIndex" style="width:100%;">
+                [attr.tabindex]="tabIndex" style="width:100%;"
+                [focus]="keyboardAccessible">
           <strong>{{title}}</strong>
         </button>
       </th>
